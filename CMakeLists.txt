@@ -16,12 +16,12 @@ INCLUDE_DIRECTORIES(./src/)
 SET(WATERTIGHT_CPPS ./src/triangular_mesh.cpp
 		    ./src/parse_stl.cpp)
 
-add_library(utils ${WATERTIGHT_CPPS})
+add_library(watertight ${WATERTIGHT_CPPS})
 
 SET(TEST_FILES ./test/triangular_mesh_tests.cpp)
 
 add_executable(all-tests ${TEST_FILES})
-#target_link_libraries(all-tests watertight)
+target_link_libraries(all-tests watertight)
 
 ######### VTK Example ##########
 

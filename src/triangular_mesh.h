@@ -15,4 +15,16 @@ namespace watertight {
     return diff <= eps;
   }
 
+  template<typename Mesh>
+  double volume(const Mesh& m) {
+    double volume = 0.0;
+
+    for (auto& tri : m) {
+      auto n = cross(vertex_1(tri) - vertex_0(tri), vertex_2(tri) - vertex_0(tri));
+      volume += dot(vertex_0(tri), n);
+    }
+
+    return (1.0 / 6.0)*volume;
+  }
+
 }

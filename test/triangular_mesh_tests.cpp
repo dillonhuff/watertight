@@ -5,11 +5,17 @@
 #include "parse_stl.h"
 #include "triangular_mesh.h"
 
+using namespace std;
+
 namespace watertight {
 
   TEST_CASE("Volume") {
-    triangular_mesh mesh = parse_stl("./test/meshes/Box1x1x1.stl", 0.0001);
+    stl_data mesh = parse_stl("./test/meshes/Box1x1x1.stl");
 
-    REQUIRE(within_eps(mesh.volume(), 1.0, 0.0001));
+    double vol = volume(mesh.triangles);
+
+    cout << "Volume = " << vol << endl;
+
+    REQUIRE(within_eps(vol, 1.0, 0.0001));
   }
 }

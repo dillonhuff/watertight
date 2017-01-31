@@ -26,6 +26,14 @@ namespace watertight {
       normal(normalp), v1(v1p), v2(v2p), v3(v3p) {}
   };
 
+  point vertex_0(const triangle);
+  point vertex_1(const triangle);
+  point vertex_2(const triangle);
+
+  double dot(const point l, const point r);
+  point cross(const point l, const point r);
+  
+
   std::ostream& operator<<(std::ostream& out, const triangle& t);
 
   struct stl_data {
@@ -36,8 +44,6 @@ namespace watertight {
   };
 
   stl_data parse_stl(const std::string& stl_path);
-
-  triangular_mesh parse_stl(const std::string& stl_path, const double tol);
 
 }
 

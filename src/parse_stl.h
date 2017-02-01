@@ -17,6 +17,14 @@ namespace watertight {
     point(float xp, float yp, float zp) : x(xp), y(yp), z(zp) {}
   };
 
+  static inline float dot(const point l, const point r) {
+    return l.x*r.x + l.y*r.y + l.z*r.z;
+  }
+
+  static inline point operator-(const point l, const point r) {
+    return point(l.x - r.x, l.y - r.y, l.z - r.z);
+  }
+
   struct triangle {
     point normal;
     point v1;
@@ -26,12 +34,25 @@ namespace watertight {
       normal(normalp), v1(v1p), v2(v2p), v3(v3p) {}
   };
 
-  point vertex_0(const triangle);
-  point vertex_1(const triangle);
-  point vertex_2(const triangle);
+  static inline point vertex_0(const triangle t) {
+    return t.v1;
+  }
 
-  double dot(const point l, const point r);
-  point cross(const point l, const point r);
+
+  static inline point vertex_1(const triangle t) {
+    return t.v2;
+  }
+
+  static inline point vertex_2(const triangle t) {
+    return t.v3;
+  }
+  
+  static inline point cross(const point u, const point v) {
+    double x = u.y * v.z - v.y * u.z;
+    double y = u.z * v.x - v.z * u.x;
+    double z = u.x * v.y - v.x * u.y;
+    return point(x, y, z);
+  }
   
 
   std::ostream& operator<<(std::ostream& out, const triangle& t);
